@@ -36,3 +36,7 @@ spark-sql -f tpcds_query67a.sql >tpcds_query67a.out #concatenar fecha hora y gua
 aws s3 cp tpcds_query67a.out s3://bigdatamell/log_spark/tpcds_query67a.out
 echo "Success Cluster"
 #hacer que tome el archivo de query a ejecutar por parametro
+exit
+exit
+aws emr terminate-clusters --cluster-ids $CLUSTER_ID --profile usrmll
+aws emr list-clusters --cluster-states WAITING --profile usrmll
