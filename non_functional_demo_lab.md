@@ -1,10 +1,15 @@
 # Non Functional characteristics of Distribuited Systems into the Big Data alternative tool in AWS Cloud
 
 **Introduction**
+
 This tutorial is the demostration of non functional properties Distribuid Systems as fault tolerance, performance and cluster concept throught the experiments of an alternative Big Data tool for Athena usable in some use of cases.
+
 **Context for the tutorial**
+
 The following subsections provide a brief overview of how this tutorial fits into the broader context of Big Data as Distribuid Systems with their main characteristics and how with the steps to build and experimental tool it achieve to demostrate the non functional properties.
+
 **Tutorial objectives**
+
 This tutorial teach you how to:
 Use services and tools of AWS for Big Data on command line and manually.
 Prepare an environment of benchmark Big Data with TPC-DS with Cloud Architecture.
@@ -12,6 +17,7 @@ Set and launch a cluster of Elastic Map Reduce with specific with Spark.
 Demostrate the fault tolerance characterstic of distribuited systems.
 Demostrate the performance property.
 Demostrate the cluster concept.
+
 **Intended audience**
 This tutorial is intended for students of grade or postgraduate in Computer Sciences or relative, and who are interested in gaining expertise with charactersitcs of distribuited systems and some specific knowledge of big data analysis on AWS.
 Prerequisites
