@@ -35,6 +35,8 @@ This tutorial has the following parts:
 1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size. The script file ddl.sql has the sentences to create the tables of the database but using Redshift that is a producto of AWS to store large volumes of data.
 
 2\. We have to create this tables but in S3 files. For this we will use Athena to run the scripts but first we must change the following:
+- CREATE DATABASE tpcds_1tbrs;
+- Configure an S3 repo for 
 - Change the following types int4 to int
 - Change the .......
 ![Sample Output](img/sample_output.png)
