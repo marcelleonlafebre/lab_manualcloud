@@ -34,9 +34,14 @@ This tutorial has the following parts:
 
 1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size. The script file ddl.sql has the sentences to create the tables of the database but using Redshift that is a producto of AWS to store large volumes of data.
 
-2\. This scripts makes reference to a s3 files to populate the data, links for example s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/ .
-
+2\. We have to create this tables but in S3 files. For this we will use Athena to run the scripts but first we must change the following:
+- Change the following types int4 to int
+- Change the .......
 ![Sample Output](img/sample_output.png)
+
+3\. This scripts makes reference to a s3 files to populate the data, links for example s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/ .
+
+
 
 3\. We have to modify the scripts, changes like the datatype numeric by decimal with the same precision, all the int4 and int8 replaced by int, remove the primary key and next we open Athena to run the scripts to create structure of tables throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
