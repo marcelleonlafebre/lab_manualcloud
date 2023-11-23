@@ -2,18 +2,18 @@
 
 **Introduction**
 
-This tutorial is the demostration of non functional properties Distribuid Systems as fault tolerance, performance and cluster concept throught the experiments of an alternative Big Data tool for Athena usable in some use of cases.
-
+This tutorial is the demostration of non functional properties Distribuid Systems as fault tolerance, performance and cluster concept throught the experiments of an alternative Big Data tool for Athena usable in some use of cases, specifically EMR Cluster with Spark.
 **Context for the tutorial**
 
 The following subsections provide a brief overview of how this tutorial fits into the broader context of Big Data as Distribuid Systems with their main characteristics and how with the steps to build and experimental tool it achieve to demostrate the non functional properties.
+You will be able to run this tutorial in a learner lab environment of AWS Academy.
 
 **Tutorial objectives**
 
-This tutorial teach you how to:
+This tutorial will teach you how to:
 Use services and tools of AWS for Big Data on command line and manually.
 Prepare an environment of benchmark Big Data with TPC-DS with Cloud Architecture.
-Set and launch a cluster of Elastic Map Reduce with specific with Spark.  
+Set and launch a cluster of Elastic Map Reduce with Spark.  
 Demostrate the fault tolerance characterstic of distribuited systems.
 Demostrate the performance property.
 Demostrate the cluster concept.
@@ -32,7 +32,7 @@ This tutorial has the following parts:
    
 ## Process to setup of tpc-ds benchmark environment in aws
 
-1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size.
+1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size. The script file ddl.sql has the sentences to create the tables of the database but using Redshift that is a producto of AWS to store large volumes of data.
 
 2\. This scripts makes reference to a s3 files to populate the data, links for example s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/ .
 
