@@ -3,6 +3,7 @@
 **Introduction**
 
 This tutorial is the demostration of non functional properties Distribuid Systems as fault tolerance, performance and cluster concept throught the experiments of an alternative Big Data tool for Athena usable in some use of cases, specifically EMR Cluster with Spark.
+
 **Context for the tutorial**
 
 The following subsections provide a brief overview of how this tutorial fits into the broader context of Big Data as Distribuid Systems with their main characteristics and how with the steps to build and experimental tool it achieve to demostrate the non functional properties.
@@ -36,16 +37,19 @@ This tutorial has the following parts:
 
 2\. We have to create this tables but in S3 files. For this we will use Athena to run the scripts but first we must change the following:
 - CREATE DATABASE tpcds_1tbrs;
-- Configure an S3 repo for 
-- Change the following types int4 to int
-- Change the .......
-![Sample Output](img/sample_output.png)
+- Configure an S3 repo for in "Edit Settings";
 
-3\. This scripts makes reference to a s3 files to populate the data, links for example s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/ .
+3\. Modify the script of creation of table with the following:
+- Start the script with "CREATE EXTERNAL TABLE IF NOT EXISTS".
+- Change the data types int4 to int and numeric to decimal.
+- Delete the definition of primary key.
+- Delete the null definition of the fields.
+- Makes reference to a s3 files to populate the data, the location is s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/
+![Sample Output](img/script_table_exc.png)
 
+4\. You must repeat this step for every table of tpcds.
 
-
-3\. We have to modify the scripts, changes like the datatype numeric by decimal with the same precision, all the int4 and int8 replaced by int, remove the primary key and next we open Athena to run the scripts to create structure of tables throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
+5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
 ## Setup and run emr cluster with access to the tpc-ds big data repository throught command line
 ```
