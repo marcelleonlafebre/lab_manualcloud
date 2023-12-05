@@ -47,7 +47,7 @@ This tutorial has the following parts:
 - Makes reference to a s3 files to populate the data, the location is s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/
 ![Sample Output](img/script_table_exc.png)
 
-4\. You must repeat this step for every table of tpcds.
+4\. You must repeat this step for every table of tpc-ds benchmark.
 
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
