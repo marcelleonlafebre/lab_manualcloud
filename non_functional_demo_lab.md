@@ -41,13 +41,13 @@ This tutorial has the following parts:
 
 3\. Modify the script of creation of table with the following:
 - Start the script with "CREATE EXTERNAL TABLE IF NOT EXISTS".
-- Change the data types int4 to int and numeric to decimal.
+- Change the data types integer, int8 or int4 to int and numeric to decimal.
 - Delete the definition of primary key.
 - Delete the null definition of the fields.
-- Makes reference to a s3 files to populate the data, the location is s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/
+- Finally make reference to a s3 files to populate the data, the location in this case is s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/. e.g. location and next between double quotes the link to s3 repository.
 ![Sample Output](img/script_table_exc.png)
 
-4\. You must repeat this step for every table of tpc-ds benchmark.
+4\. You must repeat this step for every table of tpc-ds benchmark. For our experiment we will create four tables: date_dim, item, store and store_sales, table used in the query number 47 in this repository https://github.com/awslabs/amazon-redshift-utils/tree/master/src/)/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB/queries.
 
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
