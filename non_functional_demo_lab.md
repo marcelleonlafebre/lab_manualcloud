@@ -44,7 +44,7 @@ This tutorial has the following parts:
 - Change the data types integer, int8 or int4 to int and numeric to decimal.
 - Delete the definition of primary key.
 - Delete the null definition of the fields.
-- Finally make reference to a s3 files to populate the data, the location in this case is s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/. e.g. location and next between double quotes the link to s3 repository.
+- Finally write the following block of code and make reference to a s3 files to populate the data, the location in this case is s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/. e.g. location and next between quotes the link to s3 repository:
 ```
   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
 WITH SERDEPROPERTIES ('field.delim' = '|')
