@@ -59,7 +59,7 @@ TBLPROPERTIES (
   'write.compression'='GZIP')
 ![Sample Output](img/script_table_exc.png)
 
-4\. You must repeat this step for every table of tpc-ds benchmark. For our experiment we will create four tables: date_dim, item, store and store_sales, table used in the query number 47 in this repository https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB/queries.
+4\. You must repeat this step for every table of tpc-ds benchmark, you have to make sure of chosing de database previous to excecute every script of creation. For our experiment we will create four tables: date_dim, item, store and store_sales, table used in the query number 67a in this repository https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB/queries.
 
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
