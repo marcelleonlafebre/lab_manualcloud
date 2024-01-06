@@ -91,9 +91,9 @@ With this we have created our environment witch we can connect from every eam cl
 | **install-spark**      | True                                        |
 | **java-version**       | 8                                           |
 
-img/ft_athena.png
-img/fp_query_sp.png
-img/ft_demo_1.png
-img/ft_demo_2.png
-img/ft_demo_3.png
-img/ft_final.png  
+![Fault Tolerance Athena Query](img/ft_athena.png
+![Fault Tolerance Spark Query](img/fp_query_sp.png
+![Fault Tolerance Demo 1](img/ft_demo_1.png
+![Fault Tolerance Demo 2](img/ft_demo_2.png
+![Fault Tolerance Demo 3](img/ft_demo_3.png
+![Fault Tolerance Final](img/ft_final.png  
