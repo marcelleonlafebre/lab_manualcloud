@@ -61,13 +61,13 @@ TBLPROPERTIES (
 
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
+## Demostration of Cluster Concept.
 ## Setup and run emr cluster with access to the tpc-ds big data repository throught command line
 ```
 export PATH=$PATH:~/Library/Python/3.8/bin
 flintrock --version
 ```
-## Demostration of Fault Tolerance.
-With this we have created our environment witch we can connect from every eam cluster started through the property glue connection. The following Lab shows how perform the fault tolerance in a cluster. We will start a cluster of spark for execute one heavy query and we will do down one server for show that this affects but not in all the process.\ 
+
 ## EMR Spark Cluster.
 7. We wil use the  two ways for : manual for down te server and scripts  
 > Note: We use 3TB dataset in the [examples](./examples), if you'd like to change to 100G or 1T, don't forget to change the parameter `Scale factor (in GB)` in the job submission scripts. Spark executor configuration should also be adjusted correspondingly.
@@ -91,6 +91,16 @@ With this we have created our environment witch we can connect from every eam cl
 | **install-spark**      | True                                        |
 | **java-version**       | 8                                           |
 
+## Demostration of Performance.
+![Metrics](img/metrics.png)
+![Metrics](img/metrics1.png)
+![Metrics](img/metrics2.png)
+![Metrics](img/metrics3.png)
+![Metrics](img/metrics4.png)
+![Metrics](img/metrics5.png)
+
+## Demostration of Fault Tolerance.
+With this we have created our environment witch we can connect from every eam cluster started through the property glue connection. The following Lab shows how perform the fault tolerance in a cluster. We will start a cluster of spark for execute one heavy query and we will do down one server for show that this affects but not in all the process.\ 
 ![Fault Tolerance Athena Query](img/ft_athena.png)
 ![Fault Tolerance Spark Query](img/fp_query_sp.png)
 ![Fault Tolerance Demo 1](img/ft_demo_1.png)
