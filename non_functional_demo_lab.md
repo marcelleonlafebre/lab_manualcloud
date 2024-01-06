@@ -33,10 +33,15 @@ This tutorial has the following parts:
    
 ## Process to setup of tpc-ds benchmark environment in aws
 
-1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size. The script file ddl.sql has the sentences to create the tables of the database but using Redshift that is a producto of AWS to store large volumes of data.
+Is important to mention that this demo excercise can be excecuted in an Lab Learner Environment that as a prerequisite we have to setup the Athena Tool for Big Data Querys, creating a bucket as repository... 
+![Athena Conf](img/athena_conf.png)
+![Athena Conf](img/athena_conf2.png)
+Once Athena is configured whe have to do the following steps:
+1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size. The script file ddl.sql has the sentences to create the tables of the database but using Redshift that is a product of AWS to store large volumes of data.
 
 2\. We have to create this tables but in S3 files. For this we will use Athena to run the scripts but first we must change the following:
 - CREATE DATABASE tpcds_1tbrs;
+![TPCDS DB](img/tpcds_db.png)
 - Configure an S3 repo for in "Edit Settings";
 
 3\. Modify the script of creation of table with the following:
@@ -62,6 +67,7 @@ TBLPROPERTIES (
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
 ## Demostration of Cluster Concept.
+![EMR 1 SPARK](img/cluster1.png)
 ## Setup and run emr cluster with access to the tpc-ds big data repository throught command line
 ```
 export PATH=$PATH:~/Library/Python/3.8/bin
@@ -69,6 +75,9 @@ flintrock --version
 ```
 
 ## EMR Spark Cluster.
+![EMR 1 SPARK](img/cluster2.png)
+![EMR 1 SPARK](img/cluster3.png)
+![EMR 1 SPARK](img/cluster_final.png)
 7. We wil use the  two ways for : manual for down te server and scripts  
 > Note: We use 3TB dataset in the [examples](./examples), if you'd like to change to 100G or 1T, don't forget to change the parameter `Scale factor (in GB)` in the job submission scripts. Spark executor configuration should also be adjusted correspondingly.
 
