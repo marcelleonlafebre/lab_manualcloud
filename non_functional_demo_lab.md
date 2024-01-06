@@ -27,9 +27,9 @@ Students should already have dominated the theory od Distribuited Systems and ba
 This tutorial has the following parts:
 1. [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws)
 2. [Setup and run EMR Cluster with access to the TPC-DS Big Data repository throught command line.](#setup-and-run-emr-cluster-with-access-to-the-tpc-ds-big-data-repository-throught-command-line)
-3. [Demostration of Fault Tolerance.](#)
+3. [Demostration of Cluster Concept.](#)
 4. [Demostration of Performance.](#)
-5. [Demostration of Cluster Concept.](#)
+5. [Demostration of Fault Tolerance.](#)
    
 ## Process to setup of tpc-ds benchmark environment in aws
 
@@ -91,4 +91,9 @@ With this we have created our environment witch we can connect from every eam cl
 | **install-spark**      | True                                        |
 | **java-version**       | 8                                           |
 
-  
+img/ft_athena.png
+img/fp_query_sp.png
+img/ft_demo_1.png
+img/ft_demo_2.png
+img/ft_demo_3.png
+img/ft_final.png  
