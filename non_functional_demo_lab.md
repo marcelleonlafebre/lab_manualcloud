@@ -34,7 +34,7 @@ This tutorial has the following parts:
 ## Process to setup of tpc-ds benchmark environment in aws
 
 Is important to mention that this demo excercise can be excecuted in an Lab Learner Environment that as a prerequisite we have to setup the Athena Tool for Big Data Querys, creating a bucket as repository needed.
-The following two images show how configure the prerequisite to use Athena, first creating a bucket and then setting it for Athena:
+The following two images show how configure the prerequisite to use Athena, first creating a bucket S3 and then setting it using "Edit Settings" for the right functionning of Athena:
 ![Athena Conf](img/athena_conf.png)
 ![Athena Conf](img/athena_conf2.png)
 Once Athena is configured we have to do the following steps:
@@ -42,14 +42,16 @@ Once Athena is configured we have to do the following steps:
 1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size. The script file ddl.sql has the sentences to create the tables of the database but using Redshift that is a product of AWS to store large volumes of data.
 
 2\. We have to create this tables but in S3 files. For this we will use Athena to run the scripts but first we must change the following:
-- CREATE DATABASE tpcds_1tbrs;
+- Creation of database with the following code:
+```
+CREATE DATABASE tpcds_1tbrs;
+```
 ![TPCDS DB](img/tpcds_db.png)
-- Configure an S3 repo for in "Edit Settings";
 
 3\. Modify the script of creation of table with the following:
-- Start the script with "CREATE EXTERNAL TABLES".
-- Change the data types integer, int8 or int4 to int and numeric to decimal.
-- Delete the definition of primary key.
+- Start the script with "create external table".
+- Change the data types "integer", "int8" or ""int4" to "int" and "numeric" to "decimal" keeping the precision.
+- Delete the definitions of "primary key".
 - Delete the null definition of the fields.
 - Finally write the following block of code and make reference to a s3 files to populate the data, the location in this case is s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/. e.g. location and next between quotes the link to s3 repository:
 ```
@@ -64,7 +66,7 @@ TBLPROPERTIES (
 ```
 ![Sample Output](img/script_table_exc.png)
 
-4\. You must repeat this step for every table of tpc-ds benchmark, you have to make sure of chosing de database previous to excecute every script of creation. For our experiment we will create four tables: date_dim, item, store and store_sales, table used in the query number 67a in this repository https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB/queries.
+4\. You must repeat this step for every table of tpc-ds benchmark, you have to make sure of chosing de database previous to excecute every script of creation. For our experiment we created in first instance four tables: date_dim, item, store and store_sales, tables used in the query number 67a in this repository https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB/queries.
 
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
