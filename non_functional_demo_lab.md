@@ -26,7 +26,7 @@ Students should already have dominated the theory od Distribuited Systems and ba
 # Sections
 This tutorial has the following parts:
 1. [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws)
-2. [Setup and run EMR Cluster with access to the TPC-DS Big Data repository throught command line.](#setup-and-run-emr-cluster-with-access-to-the-tpc-ds-big-data-repository-throught-command-line)
+2. [Setup and run EMR Cluster with access to the TPC-DS Big Data repository.](#setup-and-run-emr-cluster-with-access-to-the-tpc-ds-big-data-repository)
 3. [Demostration of Cluster Concept.](#)
 4. [Demostration of Performance.](#)
 5. [Demostration of Fault Tolerance.](#)
