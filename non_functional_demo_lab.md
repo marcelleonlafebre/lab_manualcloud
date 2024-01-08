@@ -12,7 +12,7 @@ You will be able to run this tutorial in a learner lab environment of AWS Academ
 **Tutorial objectives**
 
 This tutorial will teach you how to:
-Use services and tools of AWS for Big Data on command line and manually.
+Use services and tools of AWS for Big Data.
 Prepare an environment of benchmark Big Data with TPC-DS with Cloud Architecture.
 Set and launch a cluster of Elastic Map Reduce with Spark.  
 Demostrate the fault tolerance characterstic of distribuited systems.
@@ -71,12 +71,13 @@ TBLPROPERTIES (
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
 ## Demostration of Cluster Concept.
+We recommend to read the official documentation about Architecture of EMR Cluster for understand the functioning of the AWS EMR Cluster service: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html
+Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Apache Hadoop, Hive, Presto or Apache Spark, we use this last because of best times of excecution of querys in another work related. https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html 
+https://aws.amazon.com/es/emr/features/spark/
+
+## Setup and run emr cluster with access to the tpc-ds big data repository
+The following images shown how to set up a Cluster of EMR of Apache Spark:
 ![EMR 1 SPARK](img/cluster1.png)
-## Setup and run emr cluster with access to the tpc-ds big data repository throught command line
-```
-export PATH=$PATH:~/Library/Python/3.8/bin
-flintrock --version
-```
 
 ## EMR Spark Cluster.
 ![EMR 1 SPARK](img/cluster2.png)
