@@ -75,12 +75,15 @@ We recommend to read the official documentation about Architecture of EMR Cluste
 Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Apache Hadoop, Hive, Presto or Apache Spark, we use this last because of best times of excecution of querys in another work related. https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html 
 https://aws.amazon.com/es/emr/features/spark/
 
-## Setup and run emr cluster with access to the tpc-ds big data repository
-The following images shown how to set up a Cluster of EMR of Apache Spark:
+## Setup cluster with access to the tpc-ds big data repository
+The following images show the main configurations to set up a Cluster of EMR of Apache Spark:
+1\. After of making click in "Create Cluster" into the EMR Cluster service will appear the next screen, you have to enter a name for the cluster, then by default will be choosen the last version of EMR Cluster and then you have to make click in the application package called "Spark Interactive", notice you the automatic check in the differente software above.
+
+2\. The next property is the key to connect the Cluster with the data layer created in the section 1: [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws).
 ![EMR 1 SPARK](img/cluster1.png)
 
-## EMR Spark Cluster.
-![EMR 1 SPARK](img/cluster2.png)
+3\. The next image show the configuration of provisioning nodes to the cluster. In this point is important remember the restrictions of use the tool EMR within a Lab Environment of AWS. The main restrinctions of use are: HERE TABLE Number of nodes (not more than 9), Types of Instances of EC2: not bigger than large. Memory RAM: Not more than . And another restrictions. The most important for this case using Apache Spark is the memory, remember that Spark load the tables in memory and thus be faster. 
+[EMR 1 SPARK](img/cluster2.png)
 ![EMR 1 SPARK](img/cluster3.png)
 ![EMR 1 SPARK](img/cluster_final.png)
 7. We wil use the  two ways for : manual for down te server and scripts  
