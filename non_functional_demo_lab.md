@@ -2,7 +2,7 @@
 
 **Introduction**
 
-This tutorial is the demostration of non functional properties Distribuid Systems as fault tolerance, performance and cluster concept throught the experiments of an alternative Big Data tool for Athena usable in some use of cases, specifically EMR Cluster with Spark.
+This tutorial is the demostration of non functional properties Distribuid Systems as cluster concept, performance and fault tolerance, throught the experiments of an alternative Big Data tool for Athena usable in some use of cases, specifically EMR Cluster with Spark.
 
 **Context for the tutorial**
 
@@ -33,10 +33,12 @@ This tutorial has the following parts:
    
 ## Process to setup of tpc-ds benchmark environment in aws
 
-Is important to mention that this demo excercise can be excecuted in an Lab Learner Environment that as a prerequisite we have to setup the Athena Tool for Big Data Querys, creating a bucket as repository... 
+Is important to mention that this demo excercise can be excecuted in an Lab Learner Environment that as a prerequisite we have to setup the Athena Tool for Big Data Querys, creating a bucket as repository needed.
+The following two images show how configure the prerequisite to use Athena, first creating a bucket and then setting it for Athena:
 ![Athena Conf](img/athena_conf.png)
 ![Athena Conf](img/athena_conf2.png)
-Once Athena is configured whe have to do the following steps:
+Once Athena is configured we have to do the following steps:
+
 1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size. The script file ddl.sql has the sentences to create the tables of the database but using Redshift that is a product of AWS to store large volumes of data.
 
 2\. We have to create this tables but in S3 files. For this we will use Athena to run the scripts but first we must change the following:
