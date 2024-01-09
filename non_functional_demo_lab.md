@@ -83,7 +83,7 @@ The following images show the main configurations to set up a Cluster of EMR of 
 ![EMR 1 SPARK](img/cluster1.png)
 
 3\. The next image show the configuration of provisioning nodes to the cluster. In this point is important remember the restrictions of use the tool EMR within a Lab Environment of AWS. The main restrinctions of use are: HERE TABLE Number of nodes (not more than 9), Types of Instances of EC2: not bigger than large. Memory RAM: Not more than . And another restrictions. The most important for this case using Apache Spark is the memory, remember that Spark load the tables in memory and thus be faster. 
-[EMR 1 SPARK](img/cluster2.png)
+![EMR 1 SPARK](img/cluster2.png)
 ![EMR 1 SPARK](img/cluster3.png)
 ![EMR 1 SPARK](img/cluster_final.png)
 7. We wil use the  two ways for : manual for down te server and scripts  
