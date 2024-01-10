@@ -120,7 +120,7 @@ The following images show the main configurations to set up a Cluster of EMR of 
 ## Demostration of Fault Tolerance.
 With this we have created our environment witch we can connect from every eam cluster started through the property glue connection. The following Lab shows how perform the fault tolerance in a cluster. We will start a cluster of spark for execute one heavy query and we will do down one server for show that this affects but not in all the process.\ 
 ![Fault Tolerance Athena Query](img/ft_athena.png)
-![Fault Tolerance Spark Query](img/fp_query_sp.png)
+![Fault Tolerance Spark Query](img/ft_query_sp.png)
 ![Fault Tolerance Demo 1](img/ft_demo_1.png)
 ![Fault Tolerance Demo 2](img/ft_demo_2.png)
 ![Fault Tolerance Demo 3](img/ft_demo_3.png)
