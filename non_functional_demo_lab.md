@@ -115,6 +115,7 @@ In summary bellow we describe the important configurations to take into account:
 | **num-core-nodes**         | 1                                           |
 
 ## Demostration of Performance.
+Here official links of AWS service called Cloud Watch that allows monitoring and visualize metrics in 3 dimensions of a EMR Cluster:
 ![Metrics](img/metrics.png)
 ![Metrics](img/metrics1.png)
 ![Metrics](img/metrics2.png)
