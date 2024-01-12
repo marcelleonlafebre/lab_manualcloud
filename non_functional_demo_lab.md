@@ -34,7 +34,7 @@ This tutorial has the following parts:
 ## Process to setup of tpc-ds benchmark environment in aws
 
 Is important to mention that this demo excercise can be excecuted in an Lab Learner Environment that as a prerequisite we have to setup the Athena Tool for Big Data Querys, creating a bucket as repository needed.
-The following two images show how configure the prerequisite to use Athena, first creating a bucket S3 and then setting it using "Edit Settings" for the right functionning of Athena:
+The following two images show how to configure the prerequisite to use Athena, first creating a bucket S3 and after setting it using "Edit Settings" for the right functionning of Athena:
 ![Athena Conf](img/athena_conf.png)
 ![Athena Conf](img/athena_conf2.png)
 Once Athena is configured we have to do the following steps:
@@ -71,9 +71,8 @@ TBLPROPERTIES (
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
 ## Demostration of Cluster Concept.
-We recommend to read the official documentation about Architecture of EMR Cluster for understand the functioning of the AWS EMR Cluster service: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html
-Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Apache Hadoop, Hive, Presto or Apache Spark, we use this last because of best times of excecution of querys in another work related. https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html 
-https://aws.amazon.com/es/emr/features/spark/
+We recommend to read the official documentation about Architecture of EMR Cluster for understand the functioning of the AWS EMR Cluster service in the following links: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html
+Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Hadoop, Presto or Spark, we use this last because of best times of excecution of querys in another work related: https://aws.amazon.com/es/emr/features/spark/
 
 ## Setup cluster with access to the tpc-ds big data repository
 The following images show the main configurations to set up a Cluster of EMR of Apache Spark:
