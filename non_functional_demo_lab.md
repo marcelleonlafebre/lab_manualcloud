@@ -114,16 +114,19 @@ In summary bellow we describe the important configurations to take into account:
 | **num-primary-nodes**         | 1                                           |
 | **num-core-nodes**         | 1                                           |
 
-## Demostration of Performance.
-Here official links of AWS service called Cloud Watch that allows monitoring and visualize metrics in 3 dimensions of a EMR Cluster:
+## Demostration of Performance
+Here official links of AWS service called Cloud Watch that allows monitoring and visualize metrics in 3 dimensions of a EMR Cluster: of the cluster state, state of nodes, and inputs and outputs as S3, hard disk, memory, among others. https://aws.amazon.com/es/cloudwatch/.
+The next two images show the review of the dashboard with metrics predesign for cluster state, these indicators allows to know the health and performance in realtime while the cluster is processes of differents jobs running their steps and Negotiator for more Resource   .
 ![Metrics](img/metrics.png)
 ![Metrics](img/metrics1.png)
+The next two images allows review the dashboard of metrics predesign for node state:
 ![Metrics](img/metrics2.png)
 ![Metrics](img/metrics3.png)
+The next two images allows review the dashboard of metrics predesign for inputs and outputs:
 ![Metrics](img/metrics4.png)
 ![Metrics](img/metrics5.png)
 
-## Demostration of Fault Tolerance.
+## Demostration of Fault Tolerance
 With this we have created our environment witch we can connect from every eam cluster started through the property glue connection. The following Lab shows how perform the fault tolerance in a cluster. We will start a cluster of spark for execute one heavy query and we will do down one server for show that this affects but not in all the process.\ 
 ![Fault Tolerance Athena Query](img/ft_athena.png)
 ![Fault Tolerance Spark Query](img/ft_query_sp.png)
