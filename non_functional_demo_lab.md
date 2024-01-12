@@ -74,7 +74,7 @@ TBLPROPERTIES (
 We recommend to read the official documentation about Architecture of EMR Cluster for understand the functioning of the AWS EMR Cluster service in the following links: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html
 Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Hadoop, Presto or Spark, we use this last because of best times of excecution of querys in another work related.
 
-## Setup cluster with access to the tpcds big data repository
+## Setup and run cluster with access to the tpcds big data repository
 The following images show the main configurations to set up a Cluster of EMR of Apache Spark:
 1\. After of making click in "Create Cluster" into the EMR Cluster service will appear the next screen, you have to enter a name for the cluster, then by default will be choosen the last version of EMR Cluster and then you have to make click in the application package called "Spark Interactive", notice you the automatic check in the differente software above.
 
@@ -89,15 +89,15 @@ The following images show the main configurations to set up a Cluster of EMR of 
 | ------------------------------ | --------- |  
 | **Max. vCPU** | 32 concurrent running |
 | **Max. number of nodes** | 9 concurrent running |
-| **EC2 Instance size** | *large o smaller |
-*Is important to know that EC2 instances of size large has 8 GB of memory RAM, this is the most important fact in this tutorial, because of the Apache Spark uses the memory as its main resource, Spark load the tables in memory and thus be faster: https://aws.amazon.com/es/what-is/apache-spark/. 
+| **EC2 Instance size** | large o smaller |
+
+7. We wil use the  two ways for : manual for down te server and scripts  
+> Note: Is important to know that EC2 instances of `size large` has 8 GB of memory RAM, this is the most important fact in this tutorial, because of the Apache Spark uses the memory as its main resource, Spark load the tables in memory and thus be faster: https://aws.amazon.com/es/what-is/apache-spark/.
 ![EMR 1 SPARK](img/cluster3.png)
+
 5\. Finally the cluster created has the following information: 
 ![EMR 1 SPARK](img/cluster_final1.png)
 ![EMR 1 SPARK](img/cluster_final2.png)
-
-7. We wil use the  two ways for : manual for down te server and scripts  
-> Note: We use 3TB dataset in the [examples](./examples), if you'd like to change to 100G or 1T, don't forget to change the parameter `Scale factor (in GB)` in the job submission scripts. Spark executor configuration should also be adjusted correspondingly.
 
 | **Config file attribute name** | **value** |       
 | ------------------------------ | --------- |      
