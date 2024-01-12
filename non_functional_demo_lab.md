@@ -74,8 +74,9 @@ TBLPROPERTIES (
 We recommend to read the official documentation about Architecture of EMR Cluster for understand the functioning of the AWS EMR Cluster service in the following links: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html
 Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Hadoop, Presto or Spark, we use this last because of best times of excecution of querys in another work related.
 
-## Setup and run cluster with access to the tpcds big data repository
+## Setup and run emr cluster with access to the tpcds big data repository
 The following images show the main configurations to set up a Cluster of EMR of Apache Spark:
+
 1\. After of making click in "Create Cluster" into the EMR Cluster service will appear the next screen, you have to enter a name for the cluster, then by default will be choosen the last version of EMR Cluster and then you have to make click in the application package called "Spark Interactive", notice you the automatic check in the differente software above.
 
 2\. The next property is the key to connect the Cluster with the data layer created in the section: [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws). You will have to check the property: "Use for Spark table metadata":
@@ -93,30 +94,25 @@ The following images show the main configurations to set up a Cluster of EMR of 
 
 7. We wil use the  two ways for : manual for down te server and scripts  
 > Note: Is important to know that EC2 instances of `size large` has 8 GB of memory RAM, this is the most important fact in this tutorial, because of the Apache Spark uses the memory as its main resource, Spark load the tables in memory and thus be faster: https://aws.amazon.com/es/what-is/apache-spark/.
+
 ![EMR 1 SPARK](img/cluster3.png)
 
 5\. Finally the cluster created has the following information: 
 ![EMR 1 SPARK](img/cluster_final1.png)
 ![EMR 1 SPARK](img/cluster_final2.png)
 
+In summary bellow we describe the important configurations to take into account: 
 | **Config file attribute name** | **value** |       
 | ------------------------------ | --------- |      
-| **spark version** | 3.3.0 (This is equivalent to the spark version in EMR 6.9) |
-| **spark download-source**| "https://archive.apache.org/dist/spark/spark-3.3.0/spark-3.3.0-bin-hadoop3.tgz"      |
-| **hdfs version** | 3.3.4 |
-| **hdfs download-source** | "https://archive.apache.org/dist/hadoop/core/hadoop-3.3.4/"|
+| **spark version** | 3.4.1 (This is equivalent to the spark version in EMR 6.15) |
 | **key-name** | Provide the name of your EC2 key pair |
 | **identity-file**      | Provide the full path of the key pair you downloaded. For example: `/home/ec2-user/environment/master2-us-east-1-ec2-key-pair.pem`|
-| **Instance-type**      | c5d.9xlarge |
+| **Instance-type**      | m4.large |
 | **region** | Your test region. Make sure the source data has been copied to the test region. For example: `us-east-1`|
-| **ami** | `ami-05fa00d4c63e32376`  (The AMI for `us-east-1` used for this testing was: `ami-05fa00d4c63e32376 (Amazon Linux 2 AMI (HVM), SSD Volume Type (64-bit x86))`. AMIs get updated periodically. Please make sure you use the correct AMI for your region.)|
 | **instance-profile-name** | `EMR_EC2_DefaultRole` Make sure this role exists in your account. By default EMR creates this role when launched on the Management console. You can manually create this role by running: `aws emr create-default-roles` Please refer the [CLI doc](https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html). |
-| **ebs-optimized**      | Yes                                         |
-| **launch**             |                                             |
-| **num-slaves**         | 6                                           |
-| **install-hdfs**       | True                                        |
-| **install-spark**      | True                                        |
-| **java-version**       | 8                                           |
+| **num-task-nodes**         | 7                                           |
+| **num-primary-nodes**         | 1                                           |
+| **num-core-nodes**         | 1                                           |
 
 ## Demostration of Performance.
 ![Metrics](img/metrics.png)
