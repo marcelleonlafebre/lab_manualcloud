@@ -26,10 +26,10 @@ Students should already have dominated the theory od Distribuited Systems and ba
 # Sections
 This tutorial has the following parts:
 1. [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws)
-2. [Setup and run EMR Cluster with access to the TPC-DS Big Data repository.](#setup-and-run-emr-cluster-with-access-to-the-tpc-ds-big-data-repository)
-3. [Demostration of Cluster Concept.](#)
-4. [Demostration of Performance.](#)
-5. [Demostration of Fault Tolerance.](#)
+2. [Demostration of Cluster Concept.](#demostration-of-cluster-concept)
+3. [Setup and run EMR Cluster with access to the TPC-DS Big Data repository.](#setup-and-run-emr-cluster-with-access-to-the-tpc-ds-big-data-repository)
+4. [Demostration of Performance.](#demostration-of-performance)
+5. [Demostration of Fault Tolerance.](#demostration-of-fault-tolerance)
    
 ## Process to setup of tpc-ds benchmark environment in aws
 
@@ -70,7 +70,7 @@ TBLPROPERTIES (
 
 5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
 
-## Demostration of Cluster Concept.
+## Demostration of cluster concept
 We recommend to read the official documentation about Architecture of EMR Cluster for understand the functioning of the AWS EMR Cluster service in the following links: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html
 Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Hadoop, Presto or Spark, we use this last because of best times of excecution of querys in another work related: https://aws.amazon.com/es/emr/features/spark/
 
