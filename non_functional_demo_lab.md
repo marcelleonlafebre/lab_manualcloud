@@ -91,8 +91,7 @@ The following images show the main configurations to set up a Cluster of EMR of 
 | **Max. vCPU** | 32 concurrent running |
 | **Max. number of nodes** | 9 concurrent running |
 | **EC2 Instance size** | large o smaller |
-
-7. We wil use the  two ways for : manual for down te server and scripts  
+  
 > Note: Is important to know that EC2 instances of `size large` has 8 GB of memory RAM, this is the most important fact in this tutorial, because of the Apache Spark uses the memory as its main resource, Spark load the tables in memory and thus be faster: https://aws.amazon.com/es/what-is/apache-spark/.
 
 ![EMR 1 SPARK](img/cluster3.png)
@@ -115,11 +114,11 @@ In summary bellow we describe the important configurations to take into account:
 | **num-core-nodes**         | 1                                           |
 
 ## Demostration of Performance
-Here official links of AWS service called Cloud Watch that allows monitoring and visualize metrics in 3 dimensions of a EMR Cluster: of the cluster state, state of nodes, and inputs and outputs as S3, hard disk, memory, among others. https://aws.amazon.com/es/cloudwatch/.
-The next two images show the review of the dashboard with metrics predesign for cluster state, these indicators allows to know the health and performance in realtime while the cluster is processes of differents jobs running their steps and Negotiator for more Resource   .
+Here official links of AWS service called Cloud Watch that allows monitoring and visualize metrics in 3 dimensions of a EMR Cluster: of the cluster state, state of nodes, and inputs and outputs as S3, hard disk, memory, among others: https://aws.amazon.com/es/cloudwatch/.
+The next two images show the review of the dashboard with metrics predesign for cluster state, these indicators allows to know the health and performance in realtime while the cluster is processes of differents jobs running their steps and the component negotiator for more resources (YARN). This metrics can be reviewed even in the past.
 ![Metrics](img/metrics.png)
 ![Metrics](img/metrics1.png)
-The next two images allows review the dashboard of metrics predesign for node state:
+The next two images allows review the dashboard of metrics predesign for node state allowing watch indicators of health and performance of all nodes of the EMR cluster: nodes running, pending, rebooting or nodes with problems.
 ![Metrics](img/metrics2.png)
 ![Metrics](img/metrics3.png)
 The next two images allows review the dashboard of metrics predesign for inputs and outputs:
