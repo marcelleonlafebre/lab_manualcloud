@@ -155,17 +155,22 @@ The key is put in zero the instance group using the resize option for the node c
 
 ![Fault Tolerance Demo 1](img/ft_demo_1.png)
 Then you can bring down the node choosen and you have to confirm that the node is broken.
-> Note: If you only bring down one node the Cluster use the property of deafult "Autoscaling" and raise one new instance of the same node.
-
+> Note: If you only bring down one node the Cluster use the property of deafult **Autoscaling** and raise one new instance of the same node.
 ![Fault Tolerance Demo 2](img/ft_demo_2.png)
+
 ![Fault Tolerance Demo 3](img/ft_demo_3.png)
 Finally after some messages while the node was broken the Spark EMR Cluster manages to execute the query with the same output that Athena. 
 ![Fault Tolerance Final](img/ft_final.png)
-> Note: Exists some parameters important by default in EMR Spark Cluster that are important to know related to the timeouts, in this case 100 seconds to validate connections with nodes and 30 minutes to resolve a query.
+> Note: Exists some parameters important by default in EMR Spark Cluster that are important to know related to the timeouts, in this case 100 seconds to validate connections among nodes and 30 minutes to resolve a query.
 
 And so the experiment demostrated that the Spark EMR Cluster despite having one less node regulates its processes to continue working.
 
 ## Bibliography
-https://www.guru99.com/blockchain-tutorial.html (available online 20XX)
+https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB (available online 2022)
+https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html (available online 2024)
+https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html (available online 2024)
+https://aws.amazon.com/es/what-is/apache-spark/ (available online 2024)
+https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html (available online 2024)
+https://aws.amazon.com/es/cloudwatch/ (available online 2024)
 Priti Kumari and Parmeet Kaur, "A survey of fault tolerance in cloud computing," 2021 Journal of King Saud University - Computer and Information Sciences, pp. 1159-1176, doi: 10.1016/j.jksuci.2018.09.021.
 https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v3.2.0.pdf
