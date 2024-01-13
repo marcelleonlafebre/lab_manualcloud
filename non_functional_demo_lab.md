@@ -30,6 +30,7 @@ This tutorial has the following parts:
 3. [Setup and run EMR Cluster with access to the TPC-DS Big Data repository.](#setup-and-run-emr-cluster-with-access-to-the-tpcds-big-data-repository)
 4. [Demostration of Performance.](#demostration-of-performance)
 5. [Demostration of Fault Tolerance.](#demostration-of-fault-tolerance)
+6. [Bibliography.](#bibliography)
    
 ## Process to setup of tpc-ds benchmark environment in aws
 
