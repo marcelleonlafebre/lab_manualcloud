@@ -100,6 +100,8 @@ The following images show the main configurations to set up a Cluster of EMR of 
 ![EMR 1 SPARK](img/cluster_final1.png)
 ![EMR 1 SPARK](img/cluster_final2.png)
 
+> Note: Don't forget allow the access to the core node of the cluster enabling in the inbound rules the ssh port from your ip.
+
 In summary bellow we describe the important configurations to take into account: 
 | **Config file attribute name** | **value** |       
 | ------------------------------ | --------- |      
@@ -127,8 +129,24 @@ The final images of this section show the dashboard of metrics predesign for inp
 
 ## Demostration of Fault Tolerance
 Fault tolerance is a very important property for a system that offer services even when one or more component faults (Priti Kumari and Parmeet Kaur, 2021). As idea general this tutorial is derived from a doctoral thesis work that search alteratives to compare Athena AWS, queries of tpc-ds benchmark of 1TB could be excecuted in Athena but due to the lack of resources by restrictions in Learner Lab same queries could not run in the EMR Cluster with Spark.
-As a practical example to demostrate the fault tolerance in a EMR Cluster we ran the basic query count the rows of the biggest table in the longer query of tpcds.
+As a practical example to demostrate the fault tolerance in a EMR Cluster, we begin by excecuting the basic query in Athena that counts the records of the largest table https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v3.2.0.pdf in the longest delayed query (number 67) of TPC-DS according to this work related (https://www.concurrencylabs.com/blog/starburst-enterprise-vs-aws-emr-sql-tpcds/).
+Finally the excecution of the query took almost 3 seconds being the result the number 287'999.764.
 ![Fault Tolerance Athena Query](img/ft_athena.png)
+
+You have to connect to the node core with a terminal using ssh throught its public direction with the user default: ec2-user and using the key pair before created. 
+Next you need elevate privileges to root. 
+After you ought to enter to the environment of Spark to launch querys with spark-sql tool. 
+Remember before to run the query place in the database previously created with command "use".
+> Note: Every sentence excecuted in spark-sql have to finish with the symbol ;.
+
+The following is a list of commands used in the proccess decribed:
+```
+sudo su -
+spark-sql
+use tpcds1tbrs;
+``` 
+You will note that the same query before excecuted in Athena in the EMR Cluster take 78 seconds approximately, this due the spark first load in memory of cluster the 287 millions and more of records. The size of one record of the table store_returns is 134 bytes, that is the cluster need a capacity of almost 36 GB in our experiment with TPC-DS database og 1 TB.
+If you remember the restrictions the capacity of cluster was of 9 cluster of size large of EC2 instances, that is 8 GB of memory per node having a total of 72 GB of mmory in cluster. Remember also that there are others process or component inside the cluster that need memory as the operative system and so.
 ![Fault Tolerance Spark Query](img/ft_query_sp.png)
 ![Fault Tolerance Demo 1](img/ft_demo_1.png)
 ![Fault Tolerance Demo 2](img/ft_demo_2.png)
