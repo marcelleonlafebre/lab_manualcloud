@@ -145,13 +145,25 @@ sudo su -
 spark-sql
 use tpcds1tbrs;
 ``` 
-You will note that the same query before excecuted in Athena in the EMR Cluster take 78 seconds approximately, this due the spark first load in memory of cluster the 287 millions and more of records. The size of one record of the table store_returns is 134 bytes, that is the cluster need a capacity of almost 36 GB in our experiment with TPC-DS database og 1 TB.
+You will note that the same query before excecuted in Athena in the EMR Cluster take 78 seconds approximately, this due the spark first load in memory of cluster the 287 millions and more of records. The size of one record of the table store_returns is 134 bytes (https://www.tpc.org/tpc_documents_current_versions/pdf/tpc-ds_v2.1.0.pdf, page 36), that is the cluster need a capacity of almost 36 GB in our experiment with TPC-DS database og 1 TB.
 If you remember the restrictions the capacity of cluster was of 9 cluster of size large of EC2 instances, that is 8 GB of memory per node having a total of 72 GB of mmory in cluster. Remember also that there are others process or component inside the cluster that need memory as the operative system and so.
 ![Fault Tolerance Spark Query](img/ft_query_sp.png)
+
+The next images show how is the correct mode to bring down a task node for simulating a failure and test the fault tolerance property.
+The key is put in zero the instance group using the resize option for the node chosen.
+> Note: Important to know that the EMR Cluster try to raise a new instance of the node if you do not assure the steps indicated.
+
 ![Fault Tolerance Demo 1](img/ft_demo_1.png)
+Then you can bring down the node choosen and you have to confirm that the node is broken.
+> Note: If you only bring down one node the Cluster use the property of deafult "Autoscaling" and raise one new instance of the same node.
+
 ![Fault Tolerance Demo 2](img/ft_demo_2.png)
 ![Fault Tolerance Demo 3](img/ft_demo_3.png)
+Finally after some messages while the node was broken the Spark EMR Cluster manages to execute the query with the same output that Athena. 
 ![Fault Tolerance Final](img/ft_final.png)
+> Note: Exists some parameters important by default in EMR Spark Cluster that are important to know related to the timeouts, in this case 100 seconds to validate connections with nodes and 30 minutes to resolve a query.
+
+And so the experiment demostrated that the Spark EMR Cluster despite having one less node regulates its processes to continue working.
 
 ## Bibliography
 https://www.guru99.com/blockchain-tutorial.html (available online 20XX)
