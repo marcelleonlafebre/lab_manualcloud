@@ -118,10 +118,10 @@ Here official links of AWS service called Cloud Watch that allows monitoring and
 The next two images show the review of the dashboard with metrics predesign for cluster state, these indicators allows to know the health and performance in realtime while the cluster is processes of differents jobs running their steps and the component negotiator for more resources (YARN). This metrics can be reviewed even in the past.
 ![Metrics](img/metrics.png)
 ![Metrics](img/metrics1.png)
-The next two images allows review the dashboard of metrics predesign for node state allowing watch indicators of health and performance of all nodes of the EMR cluster: nodes running, pending, rebooting or nodes with problems.
+The next two images show the dashboard of metrics predesign for node state allowing watch indicators of health and performance of all nodes of the EMR cluster: nodes running, pending, rebooting or nodes with problems.
 ![Metrics](img/metrics2.png)
 ![Metrics](img/metrics3.png)
-The next two images allows review the dashboard of metrics predesign for inputs and outputs:
+The final images of this section show the dashboard of metrics predesign for inputs and outputs of the cluster, the mst important here for our experiment is the indicators of memory (because of Spark technology) but also show metrics about storage. In our case this last indicators are not relevant because of the experiment connect the cluster with metadata in S3 described in the first section of this tutorial, that is the hard disk is not used in operations with data throughout this work.
 ![Metrics](img/metrics4.png)
 ![Metrics](img/metrics5.png)
 
