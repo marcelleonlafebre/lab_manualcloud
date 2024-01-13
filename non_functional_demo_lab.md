@@ -30,7 +30,7 @@ This tutorial has the following parts:
 3. [Setup and run EMR Cluster with access to the TPC-DS Big Data repository.](#setup-and-run-emr-cluster-with-access-to-the-tpcds-big-data-repository)
 4. [Demostration of Performance.](#demostration-of-performance)
 5. [Demostration of Fault Tolerance.](#demostration-of-fault-tolerance)
-6. [Bibliography.](#bibliography)
+6. [References.](#references)
    
 ## Process to setup of tpc-ds benchmark environment in aws
 
@@ -166,12 +166,12 @@ Finally after some messages while the node was broken the Spark EMR Cluster mana
 
 And so the experiment demostrated that the Spark EMR Cluster despite having one less node regulates its processes to continue working.
 
-## Bibliography
-https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB (available online 2022)
-https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html (available online 2024)
-https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html (available online 2024)
-https://aws.amazon.com/es/what-is/apache-spark/ (available online 2024)
-https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html (available online 2024)
-https://aws.amazon.com/es/cloudwatch/ (available online 2024)
-Priti Kumari and Parmeet Kaur, "A survey of fault tolerance in cloud computing," 2021 Journal of King Saud University - Computer and Information Sciences, pp. 1159-1176, doi: 10.1016/j.jksuci.2018.09.021.
-https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v3.2.0.pdf
+## References:
+- https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB (available online 2024 and created on 2022)
+- https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html (available online 2024)
+- https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html (available online 2024)
+- https://aws.amazon.com/es/what-is/apache-spark/ (available online 2024)
+- https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html (available online 2024)
+- https://aws.amazon.com/es/cloudwatch/ (available online 2024)
+- Priti Kumari and Parmeet Kaur, "A survey of fault tolerance in cloud computing," 2021 Journal of King Saud University - Computer and - Information Sciences, pp. 1159-1176, doi: 10.1016/j.jksuci.2018.09.021.
+- https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v3.2.0.pdf
