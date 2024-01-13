@@ -7,7 +7,7 @@ This tutorial is the demostration of non functional properties Distribuid System
 **Context for the tutorial**
 
 The following subsections provide a brief overview of how this tutorial fits into the broader context of Big Data as Distribuid Systems with their main characteristics and how with the steps to build and experimental tool it achieve to demostrate the non functional properties.
-You will be able to run this tutorial in a learner lab environment of AWS Academy.
+You will be able to run this tutorial in a Learner Lab environment of AWS Academy.
 
 **Tutorial objectives**
 
@@ -79,7 +79,7 @@ The following images show the main configurations to set up a Cluster of EMR of 
 
 1\. After of making click in "Create Cluster" into the EMR Cluster service will appear the next screen, you have to enter a name for the cluster, then by default will be choosen the last version of EMR Cluster and then you have to make click in the application package called "Spark Interactive", notice you the automatic check in the differente software above.
 
-2\. The next property is the key to connect the Cluster with the data layer created in the section: [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws). You will have to check the property: "Use for Spark table metadata":
+2\. The next property is the key to connect the Cluster with the data layer created in the section: [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws) You will have to check the property: "Use for Spark table metadata":
 ![EMR 1 SPARK](img/cluster1.png)
 
 3\. The next image shows the configuration for service role and instance role, in both choosing default roles.
@@ -126,10 +126,16 @@ The final images of this section show the dashboard of metrics predesign for inp
 ![Metrics](img/metrics5.png)
 
 ## Demostration of Fault Tolerance
-With this we have created our environment witch we can connect from every eam cluster started through the property glue connection. The following Lab shows how perform the fault tolerance in a cluster. We will start a cluster of spark for execute one heavy query and we will do down one server for show that this affects but not in all the process.\ 
+Fault tolerance is a very important property for a system that offer services even when one or more component faults (Priti Kumari and Parmeet Kaur, 2021). As idea general this tutorial is derived from a doctoral thesis work that search alteratives to compare Athena AWS, queries of tpc-ds benchmark of 1TB could be excecuted in Athena but due to the lack of resources by restrictions in Learner Lab same queries could not run in the EMR Cluster with Spark.
+As a practical example to demostrate the fault tolerance in a EMR Cluster we ran the basic query count the rows of the biggest table in the longer query of tpcds.
 ![Fault Tolerance Athena Query](img/ft_athena.png)
 ![Fault Tolerance Spark Query](img/ft_query_sp.png)
 ![Fault Tolerance Demo 1](img/ft_demo_1.png)
 ![Fault Tolerance Demo 2](img/ft_demo_2.png)
 ![Fault Tolerance Demo 3](img/ft_demo_3.png)
 ![Fault Tolerance Final](img/ft_final.png)
+
+## Bibliography
+https://www.guru99.com/blockchain-tutorial.html (available online 20XX)
+Priti Kumari and Parmeet Kaur, "A survey of fault tolerance in cloud computing," 2021 Journal of King Saud University - Computer and Information Sciences, pp. 1159-1176, doi: 10.1016/j.jksuci.2018.09.021.
+https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v3.2.0.pdf
