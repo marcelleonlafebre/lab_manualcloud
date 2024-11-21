@@ -43,10 +43,10 @@ needed.
 This guide has the following key sections:
 1. [Process for setting up an environment with TPC-DS in AWS for benchmarking Big Data querying platforms.](#process-for-setting-up-an-environment-with-tpc-ds-in-aws-for-benchmarking-big-data-querying-platforms)
 2. [Configure and run an EMR Cluster with access to the TPC-DS Big Data repository.](#configure-and-run-an-emr-cluster-with-access-to-the-tpc-ds-big-data-repository)
-3. [Observe the fault tolerance of an EMR cluster.](#observe-the-fault-tolerance-of-an-emr-cluster)
+3. [Observe the fault tolerance behavior in an EMR cluster using redundancy.](#observe-the-fault-tolerance-behavior-in-an-emr-cluster-using-redundancy)
 4. [Observe measurements of the performance of an EMR Cluster using CloudWatch.](#observe-measurements-of-the-performance-of-an-emr-cluster-using-cloudwatch)
 5. [Observe the scalability of an EMR cluster.](#observe-the-scalability-of-an-emr-cluster)
-6. [Appendix: Pre-requisite knowledge; refer to this section if it is unclear how to execute one or more steps in the guide.](#appendix:-pre-requisite-knowledge;-refer-to-this-section-if-it-is-unclear-how-to-execute-one-or-more-steps-in-the-guide)
+6. [Appendix: Pre-requisite knowledge; refer to this section if it is unclear how to execute one or more steps in the guide.](#appendix-pre-requisite-knowledge;-refer-to-this-section-if-it-is-unclear-how-to-execute-one-or-more-steps-in-the-guide)
 7. [References.](#references)
    
 ## Process for setting up an environment with TPC-DS in AWS for benchmarking Big Data querying platforms
