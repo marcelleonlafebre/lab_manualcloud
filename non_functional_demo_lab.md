@@ -1,77 +1,163 @@
-# Non Functional characteristics of Distribuited Systems into the Big Data alternative tool in AWS Cloud
+# Non-functional properties of Distributed Systems in AWS EMR
+**Author:** Marcel León Lafebré
 
 **Introduction**
 
-This tutorial is the demostration of non functional properties Distribuid Systems as cluster concept, performance and fault tolerance, throught the experiments of an alternative Big Data tool for Athena usable in some use of cases, specifically EMR Cluster with Spark.
+This guide lets students observe and analyze some non-functional properties of Distributed
+Systems, including performance, fault tolerance, and scalability, through a series of hands-on
+experiments. The experiments involve executing SQL queries on a data lake, using Apache
+Spark on AWS EMR.
 
-**Context for the tutorial**
+The following sections outline the teaching objectives of this guide and highlight the intended
+audience and prerequisites. This laboratory guide has been designed for execution within an
+AWS Academy Learner Lab environment.
 
-The following subsections provide a brief overview of how this tutorial fits into the broader context of Big Data as Distribuid Systems with their main characteristics and how with the steps to build and experimental tool it achieve to demostrate the non functional properties.
-You will be able to run this tutorial in a Learner Lab environment of AWS Academy.
+**Objectives**
 
-**Tutorial objectives**
-
-This tutorial will teach you how to:
-Use services and tools of AWS for Big Data.
-Prepare an environment of benchmark Big Data with TPC-DS with Cloud Architecture.
-Set and launch a cluster of Elastic Map Reduce with Spark.  
-Demostrate the fault tolerance characterstic of distribuited systems.
-Demostrate the performance property.
-Demostrate the cluster concept.
+This laboratory guide will teach you how to:
+* Use AWS services such as Athena and EMR for the analysis of large data volumes, and
+the Cloudwatch tool to monitor metrics of an EMR cluster.
+* Prepare an environment for benchmarking a Big Data platform with the benchmark
+“TPC-DS” on AWS.
+* Configure and launch an Elastic MapReduce (EMR) cluster running Spark.
+* Measure the performance of an EMR cluster.
+* Observe how an EMR cluster uses redundancy to achieve fault tolerance behavior.
+* Observe the scalability of an EMR cluster.
 
 **Intended audience**
-This tutorial is intended for students of grade or postgraduate in Computer Sciences or relative, and who are interested in gaining expertise with charactersitcs of distribuited systems and some specific knowledge of big data analysis on AWS.
-Prerequisites
-Students should already have dominated the theory od Distribuited Systems and basic knowledge of Big Data, tools and services of AWS.
+
+This laboratory guide is tailored for students pursuing undergraduate or graduate studies in
+Computer Science or related programs, who are interested in gaining practical experience in
+deploying an EMR cluster in AWS and understanding the impact of different configuration options on
+the non-functional properties of these clusters.
+
+**Prerequisites**
+
+We recommend that students have prior knowledge of Distributed Systems and Big Data concepts,
+as well as familiarity with AWS academy and to run the Lab Environment furthermore the AWS tools
+and services. Specifically the creation of rules to enable server ports and access from specific IPs,
+as well as using key pairs to access the nodes. Students can refer to the Appendix section if
+needed.
+
 # Sections
-This tutorial has the following parts:
-1. [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws)
-2. [Demostration of Cluster Concept.](#demostration-of-cluster-concept)
-3. [Setup and run EMR Cluster with access to the TPC-DS Big Data repository.](#setup-and-run-emr-cluster-with-access-to-the-tpcds-big-data-repository)
-4. [Demostration of Performance.](#demostration-of-performance)
-5. [Demostration of Fault Tolerance.](#demostration-of-fault-tolerance)
-6. [References.](#references)
+This guide has the following key sections:
+1. [Process for setting up an environment with TPC-DS in AWS for benchmarking Big Data querying platforms.](#process-for-setting-up-an-environment-with-tpc-ds-in-aws-for-benchmarking-big-data-querying-platforms)
+2. [Configure and run an EMR Cluster with access to the TPC-DS Big Data repository.](#demostration-of-cluster-concept)
+3. [Observe the fault tolerance of an EMR cluster.](#setup-and-run-emr-cluster-with-access-to-the-tpcds-big-data-repository)
+4. [Observe measurements of the performance of an EMR Cluster using CloudWatch.](#demostration-of-performance)
+5. [Observe the scalability of an EMR cluster.](#demostration-of-fault-tolerance)
+6. [Appendix: Pre-requisite knowledge; refer to this section if it is unclear how to execute one or more steps in the guide.](#demostration-of-fault-tolerance)
+7. [References.](#references)
    
-## Process to setup of tpc-ds benchmark environment in aws
+## Process for setting up an environment with TPC-DS in AWS for benchmarking Big Data querying platforms
 
-Is important to mention that this demo excercise can be excecuted in an Lab Learner Environment that as a prerequisite we have to setup the Athena Tool for Big Data Querys, creating a bucket as repository needed.
-The following two images show how to configure the prerequisite to use Athena, first creating a bucket S3 and after setting it using "Edit Settings" for the right functionning of Athena:
+This exercise must be carried out in an AWS Academy Learner Lab environment. First, you
+need to set up an S3 bucket and configure Athena, as described below:
+
+1\. Create an **Amazon S3 bucket** using S3 service with default permissions and the name that
+you decide (being a string unique in your environment), for example **_“athenabucketmll”_** where
+you could replace **_“mll”_** with the initials of your name.
+
+The following image shows the S3 bucket created.
 ![Athena Conf](img/athena_conf.png)
-![Athena Conf](img/athena_conf2.png)
-Once Athena is configured we have to do the following steps:
+2\. Go to the Athena Service and access the SQL query editor, then you have to configure it
+using **_"Edit Settings"_**. Assign the bucket created in the field query result location, note that you
+can write the location or select it in a search.
+![Athena Conf](img/athena_conf2.png).
+Once Athena is configured, continue with the following steps of the lab:
 
-1\. This work uses the following official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB) using specifically the TPC-DS of 1 TB size. The script file ddl.sql has the sentences to create the tables of the database but using Redshift that is a product of AWS to store large volumes of data.
+3\. This work uses the official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB), specifically employing
+the **_1 TB TPC-DS_** which is an industry-standard benchmark to evaluate the performance of
+systems for big data analytics; it simulates the data and typical queries of the data warehouse,
+offering different sizes of information. In summary, it provides us with data to test systems
+related to information consumption with Big Data queries. The script file ddl.sql contains the
+commands to create the database tables on Redshift, an AWS product designed for storing
+large data volumes but in this case, you will adapt to run in Athena as a datasource.
 
-2\. We have to create this tables but in S3 files. For this we will use Athena to run the scripts but first we must change the following:
-- Creation of database with the following code:
+4\. These tables are created as files stored on S3. For this, you will use Athena to execute the
+scripts, but you need to make a few changes first.
+* Create a database with the following code:
 ```
 CREATE DATABASE tpcds_1tbrs;
 ```
 ![TPCDS DB](img/tpcds_db.png)
 
-3\. Modify the script of creation of table with the following:
-- Start the script with "create external table".
-- Change the data types "integer", "int8" or ""int4" to "int" and "numeric" to "decimal" keeping the precision.
-- Delete the definitions of "primary key".
-- Delete the null definition of the fields.
-- Finally write the following block of code and make reference to a s3 files to populate the data, the location in this case is s3://redshift-downloads/TPC-DS/2.13/1TB/customer_address/. e.g. location and next between quotes the link to s3 repository:
+5\. The ddl file contains CREATE statements which you should modify as indicated below:
+* In each **“CREATE”** statement, replace **“CREATE TABLE”** with **"create external
+table"**. This is needed because the data files are stored in an external bucket that you
+do not own.
+
+6\. Inside the CREATE statement you will find the definition of each field of the table with its
+name followed by the datatype. You will modify:
+* The data types **_"integer"_**, **_"int8"_** or **_"int4"_** by **_"int"_**, and
+* The data types **_"numeric"_** by **_"decimal"_** with the same precision described after the data
+type inside parenthesis.
+
+This is needed because are the data types accepted by Athena.
+7\. Also, inside the CREATE statement you will have to modify the following:
+* **_Delete_** the **_definitions_** of **_"primary key"_** because Athena does not enforce primary keys.
+* **_Delete_** the **_null fields_** **_definitions_** to match with the data of the benchmark TPC-DS.
+* **_Delete_** the following **_declarations: diststyle, distkey_**, and **_sortkey_** because they are
+specific commands for Redshift.
+Insert the following **_code block_** at the end with important properties of the tables as the
+format or compression type. You have to refer to the link of the S3 file published by the
+TPC-DS framework for the data population e.g.
+s3://redshift-downloads/TPC-DS/2.13/1TB/**_date_dim_**/. Take into account that the file
+name (in bold and italic: date_dim) changes depending on the table and the link must go
+between quotes.
 ```
   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
 WITH SERDEPROPERTIES ('field.delim' = '|')
-STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION 's3://redshift-downloads/TPC-DS/2.13/1TB/date_dim/'
 TBLPROPERTIES (
   'classification' = 'csv',
   'write.compression' = 'GZIP'
 );
 ```
+For example, the following code is similar to the original file and highlights the words to change:
+```
+   create table tabla_ejemplo(
+   field1 **integer**,
+   field2 **int8**,
+   field3 **int4**,
+   field4 **numeric**(4,2));
+```
+The following text shows the example of the final script highlighting in bold the words added or
+changed:
+```
+create external table tabla_ejemplo(
+field1 int,
+field2 int,
+field3 int,
+field4 decimal(4,2)) ROW FORMAT SERDE
+'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+WITH SERDEPROPERTIES ('field.delim' = '|')
+STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://redshift-downloads/TPC-DS/2.13/1TB/tabla_ejemplo/'
+TBLPROPERTIES ( 'classification' = 'csv', 'write.compression' = 'GZIP'
+);
+```
+8\. The script will run in Athena and must reply **_“Query successful”_**.
 ![Sample Output](img/script_table_exc.png)
 
-4\. You must repeat this step for every table of tpc-ds benchmark, you have to make sure of chosing de database previous to excecute every script of creation. For our experiment we created in first instance four tables: date_dim, item, store and store_sales, tables used in the query number 67a in this repository https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB/queries.
+9\. Repeat the modification of the script and its execution for every table of the TPC-DS
+repository, ensuring that database tpcds_1tbrs is selected in the combo box labeled Database.
+In our experiment, we initially will create five tables: **date_dim, item, inventory, and
+warehouse**, which are used in **query number 21** in this repository https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB/queries.
 
-5\. Finally the tables will be ready to be accesed throught the data source type: AWS Glue Data Catalog in order to be ready for the tpcds data to be accessed from the EMR Clusters with only activate one property.
+The script of query number 21 has been chosen as a goal of running it because in the following
+research was not possible to execute it in an EMR Cluster with Spark:
+https://www.concurrencylabs.com/blog/starburst-enterprise-vs-aws-emr-sql-tpcds/. However,
+you can use any query that takes at least 3 minutes in Athena.
 
-## Demostration of cluster concept
+10\. After executing the previous steps, the tables will be ready to be accessed via the data
+source type: AWS Glue Data Catalog, enabling the TPC-DS data to be accessible from the
+EMR Clusters by only marking the check of one property when you create the cluster.
+
+## Configure and run an EMR Cluster with access to the TPC-DS Big Data repository
 We recommend to read the official documentation about Architecture of EMR Cluster for understand the functioning of the AWS EMR Cluster service in the following links: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html
 Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Hadoop, Presto or Spark, we use this last because of best times of excecution of querys in another work related.
 
