@@ -420,15 +420,11 @@ Cluster connected to a TPC-DS big data repository in S3.
 ## References:
 
 * https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseB
-enchmark/Cloud-DWB-Derived-from-TPCDS/1TB (available online 2024 and created in
-2022)
-* https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html
-(available online 2024)
-* https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html
-(available online 2024)
+enchmark/Cloud-DWB-Derived-from-TPCDS/1TB (available online 2024 and created in 2022)
+* https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html (available online 2024)
+* https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html (available online 2024)
 * https://aws.amazon.com/es/what-is/apache-spark/ (available online 2024)
-* https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html (available
-online 2024)
+* https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html (available online 2024)
 * https://aws.amazon.com/es/cloudwatch/ (available online 2024)
 * Priti Kumari and Parmeet Kaur, "A survey of fault tolerance in cloud computing," 2021
 Journal of King Saud University - Computer and - Information Sciences, pp. 1159-1176,
