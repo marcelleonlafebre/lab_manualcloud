@@ -42,11 +42,11 @@ needed.
 # Sections
 This guide has the following key sections:
 1. [Process for setting up an environment with TPC-DS in AWS for benchmarking Big Data querying platforms.](#process-for-setting-up-an-environment-with-tpc-ds-in-aws-for-benchmarking-big-data-querying-platforms)
-2. [Configure and run an EMR Cluster with access to the TPC-DS Big Data repository.](#demostration-of-cluster-concept)
-3. [Observe the fault tolerance of an EMR cluster.](#setup-and-run-emr-cluster-with-access-to-the-tpcds-big-data-repository)
-4. [Observe measurements of the performance of an EMR Cluster using CloudWatch.](#demostration-of-performance)
-5. [Observe the scalability of an EMR cluster.](#demostration-of-fault-tolerance)
-6. [Appendix: Pre-requisite knowledge; refer to this section if it is unclear how to execute one or more steps in the guide.](#demostration-of-fault-tolerance)
+2. [Configure and run an EMR Cluster with access to the TPC-DS Big Data repository.](#configure-and-run-an-emr-cluster-with-access-to-the-tpc-ds-big-data-repository)
+3. [Observe the fault tolerance of an EMR cluster.](#observe-the-fault-tolerance-of-an-emr-cluster)
+4. [Observe measurements of the performance of an EMR Cluster using CloudWatch.](#observe-measurements-of-the-performance-of-an-emr-cluster-using-cloudwatch)
+5. [Observe the scalability of an EMR cluster.](#observe-the-scalability-of-an-emr-cluster)
+6. [Appendix: Pre-requisite knowledge; refer to this section if it is unclear how to execute one or more steps in the guide.](#appendix:-pre-requisite-knowledge;-refer-to-this-section-if-it-is-unclear-how-to-execute-one-or-more-steps-in-the-guide)
 7. [References.](#references)
    
 ## Process for setting up an environment with TPC-DS in AWS for benchmarking Big Data querying platforms
@@ -63,7 +63,7 @@ The following image shows the S3 bucket created.
 2\. Go to the Athena Service and access the SQL query editor, then you have to configure it
 using **_"Edit Settings"_**. Assign the bucket created in the field query result location, note that you
 can write the location or select it in a search.
-![Athena Conf](img/athena_conf2.png).
+![Athena Conf](img/athena_conf2.png)
 Once Athena is configured, continue with the following steps of the lab:
 
 3\. This work uses the official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB), specifically employing
@@ -106,7 +106,7 @@ s3://redshift-downloads/TPC-DS/2.13/1TB/**_date_dim_**/. Take into account that 
 name (in bold and italic: date_dim) changes depending on the table and the link must go
 between quotes.
 ```
-  ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
 WITH SERDEPROPERTIES ('field.delim' = '|')
 STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
@@ -116,14 +116,13 @@ TBLPROPERTIES (
   'write.compression' = 'GZIP'
 );
 ```
-For example, the following code is similar to the original file and highlights the words to change:
-```
-   create table tabla_ejemplo(
-   field1 **integer**,
-   field2 **int8**,
-   field3 **int4**,
-   field4 **numeric**(4,2));
-```
+For example, the following code is similar to the original file and highlights the words to change:\
+create table tabla_ejemplo(\
+&emsp;field1 **integer**,\
+&emsp;field2 **int8**,\
+&emsp;field3 **int4**,\
+&emsp;field4 **numeric**(4,2));
+   
 The following text shows the example of the final script highlighting in bold the words added or
 changed:
 ```
@@ -131,8 +130,8 @@ create external table tabla_ejemplo(
 field1 int,
 field2 int,
 field3 int,
-field4 decimal(4,2)) ROW FORMAT SERDE
-'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+field4 decimal(4,2))
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
 WITH SERDEPROPERTIES ('field.delim' = '|')
 STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
@@ -158,106 +157,285 @@ source type: AWS Glue Data Catalog, enabling the TPC-DS data to be accessible fr
 EMR Clusters by only marking the check of one property when you create the cluster.
 
 ## Configure and run an EMR Cluster with access to the TPC-DS Big Data repository
-We recommend to read the official documentation about Architecture of EMR Cluster for understand the functioning of the AWS EMR Cluster service in the following links: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html
-Is important to mention that the AWS service of EMR Cluster can provide some types of tecnologies being the main: Hadoop, Presto or Spark, we use this last because of best times of excecution of querys in another work related.
+Before continuing to the following steps, you can refer to the official documentation on the
+architecture of the EMR Cluster service for a thorough understanding. Next are two links that we
+suggest that you read if you do not know the EMR Cluster service:
+https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html\
+https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html\
+The EMR Cluster service supports technologies such as Hadoop, Presto, or Spark. In this lab,
+we will use Apache Spark, as it is one of the most commonly used Big Data platforms in the
+industry.
 
-## Setup and run emr cluster with access to the tpcds big data repository
-The following images show the main configurations to set up a Cluster of EMR of Apache Spark:
+Here are the steps you need to follow to set up an EMR Cluster for Apache Spark:\
+1\. Click **_"Create Cluster"_** to initialize the EMR Cluster service. Then, enter a name for the
+cluster, and select the **_default_** version of the EMR Cluster, which generally is the last version
+released by the service. Then, proceed to select the **_"Spark Interactive"_** application package.
 
-1\. After of making click in "Create Cluster" into the EMR Cluster service will appear the next screen, you have to enter a name for the cluster, then by default will be choosen the last version of EMR Cluster and then you have to make click in the application package called "Spark Interactive", notice you the automatic check in the differente software above.
-
-2\. The next property is the key to connect the Cluster with the data layer created in the section: [Process to setup of TPC-DS Benchmark Environment in AWS.](#process-to-setup-of-tpc-ds-benchmark-environment-in-aws) You will have to check the property: "Use for Spark table metadata":
+2\. Mark the check **_“Use for Spark table metadata”_** to connect the cluster with the data layer
+created in the previous section "Process for setting up an environment with TPC-DS in AWS for
+Benchmarking Big Data platforms".
 ![EMR 1 SPARK](img/cluster1.png)
+3\. Configure the **_service role_** and **_instance profile_** role choosing **_default roles_**.
 
-3\. The next image shows the configuration for service role and instance role, in both choosing default roles.
-![EMR 1 SPARK](img/cluster2.png)
-
-4\. The next image shows the configuration of provisioning nodes to the cluster. In this point is important remember the restrictions of use the tool EMR within a Lab Environment of AWS. The main restrinctions of use are: 
+4\. Configure the provisioning of nodes for the cluster using the **_“Add task instance group”_**
+button to create more task nodes. To consider the restrictions of using the EMR tool within an
+AWS Lab Environment which are the following:
 | **Restriction** | **value** |       
 | ------------------------------ | --------- |  
-| **Max. vCPU** | 32 concurrent running |
-| **Max. number of nodes** | 9 concurrent running |
+| **Max.vCPU** | 32 concurrent running |
+| **Max.number of nodes** | 9 concurrent running |
 | **EC2 Instance size** | large o smaller |
-  
-> Note: Is important to know that EC2 instances of `size large` has 8 GB of memory RAM, this is the most important fact in this tutorial, because of the Apache Spark uses the memory as its main resource, Spark load the tables in memory and thus be faster: https://aws.amazon.com/es/what-is/apache-spark/.
 
+> Note that "large" EC2 instances have 8 GB of memory RAM, which is important as
+Apache Spark relies on memory as its primary resource, resulting in accelerated loading
+of tables and execution of operations. You can go to this link to review Apache Spark:
+https://aws.amazon.com/es/what-is/apache-spark/.
+With the mentioned restrictions you can only create **_7 task nodes_** of **_instance type
+m4.large_** as shown in the following image:
 ![EMR 1 SPARK](img/cluster3.png)
 
-5\. Finally the cluster created has the following information: 
+4\. Finally, the cluster has been created with the following information:
 ![EMR 1 SPARK](img/cluster_final1.png)
 ![EMR 1 SPARK](img/cluster_final2.png)
 
-> Note: Don't forget allow the access to the core node of the cluster enabling in the inbound rules the ssh port from your ip.
+> Note: Don’t forget to choose the key-pair and enable access to the core node of the
+cluster by enabling access to the SSH port from your IP, using an inbound rule as
+indicated in the appendix section.
 
-In summary bellow we describe the important configurations to take into account: 
+Here is the summary of configurations to consider in the cluster creation:
 | **Config file attribute name** | **value** |       
 | ------------------------------ | --------- |      
-| **spark version** | 3.4.1 (This is equivalent to the spark version in EMR 6.15) |
-| **key-name** | Provide the name of your EC2 key pair |
-| **identity-file**      | Provide the full path of the key pair you downloaded. For example: `/home/ec2-user/environment/master2-us-east-1-ec2-key-pair.pem`|
+| **spark version** | Default version |
+| **Amazon EC2 key pair for SSH to the cluster** | Select the name of your EC2 key pair |
 | **Instance-type**      | m4.large |
 | **region** | Your test region. Make sure the source data has been copied to the test region. For example: `us-east-1`|
-| **instance-profile-name** | `EMR_EC2_DefaultRole` Make sure this role exists in your account. By default EMR creates this role when launched on the Management console. You can manually create this role by running: `aws emr create-default-roles` Please refer the [CLI doc](https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html). |
-| **num-task-nodes**         | 7                                           |
-| **num-primary-nodes**         | 1                                           |
-| **num-core-nodes**         | 1                                           |
+| **Service role** | `EMR_DefaultRole` By default. 
+| **Instance profile** | `EMR_EC2_DefaultRole` Make sure this role exists in your account. By default EMR creates this role when launched on the Management console. You can manually create this role by running: `aws emr create-default-roles` Please refer the [CLI doc](https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html). |
+| **Quantity of task nodes**         | 7                                           |
+| **Quantity of primary nodes**         | 1                                           |
+| **Quantity of core nodes**         | 1                                           |
 
-## Demostration of Performance
-Here official links of AWS service called Cloud Watch that allows monitoring and visualize metrics in 3 dimensions of a EMR Cluster: of the cluster state, state of nodes, and inputs and outputs as S3, hard disk, memory, among others: https://aws.amazon.com/es/cloudwatch/.
-The next two images show the review of the dashboard with metrics predesign for cluster state, these indicators allows to know the health and performance in realtime while the cluster is processes of differents jobs running their steps and the component negotiator for more resources (YARN). This metrics can be reviewed even in the past.
+Once the cluster is in the **_“waiting” state_** you must connect via SSH to the main node with the
+following command in a terminal window; don’t forget to replace the name of the key pair file
+with the full path of your computer and the file name of your key-pair and connect to the IP
+address of the **_primary node public DNS_** of the cluster:
+```
+ssh -i emr-keypair.pem ec2-user@IP address of the primary node public DNS.
+```
+If you can not connect to your cluster, go to the **_ec2 instance_** and set the appropriate **_inbound
+rule_**, as indicated in the [Appendix](#appendix:-pre-requisite-knowledge;-refer-to-this-section-if-it-is-unclear-how-to-execute-one-or-more-steps-in-the-guide).
+
+## Observe the fault tolerance behavior in an EMR cluster using redundancy
+Fault tolerance is a very important property for a system that offers services even when one or
+more components fail (Priti Kumari and Parmeet Kaur, 2021). Redundancy is the basic
+technique of fault tolerance that focuses on duplicating crucial resources or elements in the
+system (Kamil, I. A., & Al-Askari, M. A., 2024).\
+You need access to the cluster connecting for SSH protocol with its public IP address,, log in
+with the default user **_“ec2-user”_** and use the key-pair as was explained at the end of the
+previous section.\
+Next, you have to elevate privileges to root with the following command:
+```
+sudo su -
+```
+Enter to the environment of Spark and launch queries with the spark-sql tool using the following
+command:
+```
+spark-sql
+```
+Run the command **_“use”_** to locate the database previously created as follows:
+```
+use tpcds_1tbrs;
+```
+Note that every command executed in spark-sql must end with a semi-colon (;). You can
+modify the queries in this lab to experiment with other examples. For example, you can
+execute a count of the inventory table that has 11.67GB in total size with the following
+command:
+```
+select * from inventory where inv_date_sk = 2451466;
+```
+For you to understand how Apache Spark works, for the execution of the query of all rows of the
+inventory table on the EMR cluster, Spark must load in memory approximately 783 million
+records. The size of one record in the 'inventory' table is 16 bytes (source:
+https://www.tpc.org/tpc_documents_current_versions/pdf/tpc-ds_v2.1.0.pdf, page 36), requiring
+the cluster to have a capacity of nearly 12 GB of memory for our TPC-DS database experiment
+with a scale of 1 TB database.
+
+It's worth noting that, considering the constraints of the environment, the cluster was configured
+with 9 nodes, each with a size type "large" of EC2 instances and 8 GB of memory, totaling 72
+GB of memory in the cluster. Additionally, keep in mind that other processes and components
+within the cluster also use memory, such as the operating system and others.
+
+Returning to the experiment, you will use a variant of query number 21. Its execution takes
+almost 191 seconds in the EMR Cluster, more than 3 minutes. You have to copy and paste the
+following code into the server which is a variant of query 21 for running in Spark:
+```
+select *
+from(select w_warehouse_name
+            ,i_item_id
+            ,sum(inv_quantity_on_hand) as inv_sum
+     from inventory, warehouse, item, date_dim
+     where i_current_price between 0.99 and 1.49
+     and i_item_sk=inv_item_sk
+     and inv_warehouse_sk=w_warehouse_sk
+     and inv_date_sk=d_date_sk
+     and d_date between cast('2000-02-11' as date) and cast('2000-04-11' as
+date) group by w_warehouse_name, i_item_id) x
+where inv_sum between 0.6 and 1.5
+order by w_warehouse_name,i_item_id
+limit 100;
+```
+**_Take into account that the following steps need to be executed while the query is
+running_**, for this is important to do it with a query that takes a minimum of 3 minutes to execute.
+
+You will manually introduce a failure in the cluster to test the fault tolerance properties of Spark
+going down a task node. For this, you have to **_enter to the AWS console by browser_** and go to
+the **_section of cluster details_** of the cluster running and next enter the **_“Instance Groups”
+panel_** to **_set the instance group's size to zero_** for the node that you want to go down, using
+the **_resize option_** as the following image show:
+![Fault Tolerance Demo 1](img/ft_demo_1.png)
+> Is important to remark that if these steps are not followed, the EMR Cluster will attempt
+to launch a new instance of the node. If only one node is taken offline, the Cluster will
+use its default **Autoscaling** feature and deploy a new instance of the same node.
+
+Once you have identified the instance, take it offline using the **_button actions_** to stop it
+and verify its **_state_** changes to **_“stopping”_**.
+
+![Fault Tolerance Demo 2](img/ft_demo_2.png)
+![Fault Tolerance Demo 3](img/ft_demo_3.png)
+
+After some communication attempts while the node was down, the Spark EMR Cluster
+successfully executed the query with the same results as Athena.\
+The image below is the log with the error messages from the Spark cluster while the query is
+being executed.
+
+![Fault Tolerance Final](img/ft_final.png)
+Finally, as a complement it is important to remark that there are default parameters in the
+EMR Spark Cluster that are significant, such as the 100-second timeout for validating
+connections among nodes and the 30-minute timeout for query resolution.\
+This experiment showed that the Spark EMR Cluster can regulate its processes and function
+effectively to get the query results, even with one less node.
+
+
+## Observe measurements of the performance of an EMR Cluster using CloudWatch
+The performance of an EMR Cluster can be observed with CloudWatch. It allows monitoring and
+visualizing metrics in 3 dimensions of an EMR Cluster: cluster state, state of nodes, and inputs
+and outputs such as S3, hard disk, and memory. For more details about this tool, see
+https://aws.amazon.com/es/cloudwatch/. The metrics in the CloudWatch dashboard offer
+real-time insights into the health and performance of the cluster and its nodes. These metrics
+provide valuable information on the processes of different jobs running their steps and the
+component negotiator for more resources
+(https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html).\
+You can review the following metrics while you run the query used in the demonstration of fault
+tolerance or run the following in the Spark cluster:
+```
+select count(1) from the inventory;
+```
 ![Metrics](img/metrics.png)
 ![Metrics](img/metrics1.png)
-The next two images show the dashboard of metrics predesign for node state allowing watch indicators of health and performance of all nodes of the EMR cluster: nodes running, pending, rebooting or nodes with problems.
+The next two images show the metrics dashboard for a node. Cloudwatch lets us monitor the
+health and performance of all nodes in the EMR cluster. These metrics show the nodes in
+various states such as running, pending, rebooting, or experiencing problems.
 ![Metrics](img/metrics2.png)
 ![Metrics](img/metrics3.png)
-The final images of this section show the dashboard of metrics predesign for inputs and outputs of the cluster, the mst important here for our experiment is the indicators of memory (because of Spark technology) but also show metrics about storage. In our case this last indicators are not relevant because of the experiment connect the cluster with metadata in S3 described in the first section of this tutorial, that is the hard disk is not used in operations with data throughout this work.
+Moreover, the dashboard also presents metrics for inputs and outputs of the cluster, with a specific
+focus on memory indicators due to the use of Spark technology. In our case, the metrics related to
+storage are not relevant as our experiment uses data stored in S3.
 ![Metrics](img/metrics4.png)
 ![Metrics](img/metrics5.png)
 
-## Demostration of Fault Tolerance
-Fault tolerance is a very important property for a system that offer services even when one or more component faults (Priti Kumari and Parmeet Kaur, 2021). As idea general this tutorial is derived from a doctoral thesis work that search alteratives to compare Athena AWS, queries of tpc-ds benchmark of 1TB could be excecuted in Athena but due to the lack of resources by restrictions in Learner Lab same queries could not run in the EMR Cluster with Spark.
-As a practical example to demostrate the fault tolerance in a EMR Cluster, we begin by excecuting the basic query in Athena that counts the records of the largest table https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v3.2.0.pdf in the longest delayed query (number 67) of TPC-DS according to this work related (https://www.concurrencylabs.com/blog/starburst-enterprise-vs-aws-emr-sql-tpcds/).
-Finally the excecution of the query took almost 3 seconds being the result the number 287'999.764.
-![Fault Tolerance Athena Query](img/ft_athena.png)
+## Observe the scalability of an EMR cluster
+Scalability is the ability of computer systems to generally increase but also decrease
+components to changes in processing demands for solving tasks (Sehgal, N. K., Bhatt, P. C. P.,
+& Acken, J. M., 2023).
 
-You have to connect to the node core with a terminal using ssh throught its public direction with the user default: ec2-user and using the key pair before created. 
-Next you need elevate privileges to root. 
-After you ought to enter to the environment of Spark to launch querys with spark-sql tool. 
-Remember before to run the query place in the database previously created with command "use".
-> Note: Every sentence excecuted in spark-sql have to finish with the symbol ;.
+To demonstrate the scalability in our exercise we will do two manual experiments: first, you will
+have to exec the query of this guide in an EMR Cluster with a x number of nodes and then another execution with more number of nodes so the time of execution of the same query should be better due to greater amount of resources.
 
-The following is a list of commands used in the proccess decribed:
-```
-sudo su -
-spark-sql
-use tpcds1tbrs;
-``` 
-You will note that the same query before excecuted in Athena in the EMR Cluster take 78 seconds approximately, this due the spark first load in memory of cluster the 287 millions and more of records. The size of one record of the table store_returns is 134 bytes (https://www.tpc.org/tpc_documents_current_versions/pdf/tpc-ds_v2.1.0.pdf, page 36), that is the cluster need a capacity of almost 36 GB in our experiment with TPC-DS database og 1 TB.
-If you remember the restrictions the capacity of cluster was of 9 cluster of size large of EC2 instances, that is 8 GB of memory per node having a total of 72 GB of mmory in cluster. Remember also that there are others process or component inside the cluster that need memory as the operative system and so.
-![Fault Tolerance Spark Query](img/ft_query_sp.png)
+Remember when you create the EMR Cluster to use the security group and to link the key-pair,
+both created previously in the experiments and review your public IP is configured in the
+inbound rules.
 
-The next images show how is the correct mode to bring down a task node for simulating a failure and test the fault tolerance property.
-The key is put in zero the instance group using the resize option for the node chosen.
-> Note: Important to know that the EMR Cluster try to raise a new instance of the node if you do not assure the steps indicated.
+In any case, below are 2 illustrative images of the creation of the cluster:
+![Scalability1](img/scalability1.png)
+![Scalability2](img/scalability2.png)
+Then, when the cluster is in a **_“waiting” state_** you will enter the cluster through the terminal as
+explained in the section **_“Configure and run the EMR cluster with access to the TPC-DS Big
+Data repository”._**\
+Next, you have to execute the commands described in the section **_“Observe the fault
+tolerance behavior in an EMR cluster using redundancy”_**.
 
-![Fault Tolerance Demo 1](img/ft_demo_1.png)
-Then you can bring down the node choosen and you have to confirm that the node is broken.
-> Note: If you only bring down one node the Cluster use the property of deafult **Autoscaling** and raise one new instance of the same node.
-![Fault Tolerance Demo 2](img/ft_demo_2.png)
+Now, you must execute the query 21 adapted in a cluster with only 4 task nodes and you will
+note the time taken for execution is 224 seconds which is almost 4 minutes.
+![Scalability3](img/scalability3.png)
+Then you have to **_terminate the cluster in the AWS Console_**.\
+For the second part of the experiment, you will create a new EMR Cluster but now with the 7
+task nodes, which as we saw before is the maximum size of the cluster because of the
+restrictions of use of the lab environment and you will connect through the terminal to its public
+IP.\
+Finally, you must repeat the step of the query but now in a cluster with 7 worker nodes, you will
+note the time taken for execution is 186 seconds reducing the time of execution by 17 percent.
+![Scalability4](img/scalability4.png)
+This is how it has demonstrated the concept of scalability using an EMR cluster in a Big Data
+environment, that is, with a greater number of nodes, the execution time of the same task is
+shorter.
 
-![Fault Tolerance Demo 3](img/ft_demo_3.png)
-Finally after some messages while the node was broken the Spark EMR Cluster manages to execute the query with the same output that Athena. 
-![Fault Tolerance Final](img/ft_final.png)
-> Note: Exists some parameters important by default in EMR Spark Cluster that are important to know related to the timeouts, in this case 100 seconds to validate connections among nodes and 30 minutes to resolve a query.
+## Appendix: pre-requisite knowledge; refer to this section if it is unclear how to execute one or more steps in the guide.
 
-And so the experiment demostrated that the Spark EMR Cluster despite having one less node regulates its processes to continue working.
+To run this experiment in an AWS lab environment, you have to access with your mail registered
+as **_username_** and your **_password_** to the site https://awsacademy.instructure.com/login/canvas.
+Then, in the **_control panel_** section you need access to the course **_“AWS Academy Learner
+Lab [82952]”_**. Next you must click in the **_“Modules”_** menu and scroll down to enter the section
+**_“Launch AWS Academy Learner Lab”_**. Finally you have to make a click to the button **_“Start
+Lab”_** until the AWS console is green color for launching the console with a click in the **_“AWS”_**
+button.
+![appendix1](img/appendix1.png)
+Here are the steps of help for configurations needed in this lab:
+1\. The first step is to create a key pair in the AWS console using the key pairs service:
+you have to create a key pair by putting it a name, in this case, called “emr-keypair”
+being of RSA type and “.pem” file format. Then you have to download the file for future
+usage. The keypair is shown in the console in the following image:
+![appendix2](img/appendix2.png)
+> Note: Remember to assign the permissions to the file .pem with the command chmod
+400 for Linux or Mac.
+
+2\. You will use this key pair when you have to connect to the master node of the EMR
+Cluster in this lab. The file is displayed as follows in the visual operative system:
+![appendix3](img/appendix3.png)
+3\. The second step is to create the security group using the service “Security Groups” for
+EC2 with the objective that only you have permission to connect to the master node of
+the EMR cluster. You need to assign a name, “ssh-my-ip” and select the default VPC
+(virtual private cloud). Just make sure the VPC is in the same zone and region of AWS.
+4\. You must create an inbound rule with your IP address as the source, allowing traffic
+on port 22 for the SSH protocol. The information created automatically by AWS as ID is
+important to use when you create the cluster being the security group ID and subnet ID
+generated by default.
+![appendix4](img/appendix4.png)
+Final and important note: Remember to terminate the EMR cluster after running this laboratory
+guide and delete the disk volumes created by default to save costs.
+
+Well done! You used the Amazon EMR service to demonstrate the non-functional properties of
+distributed systems like fault-tolerance and auto-scaling through the running of the Spark
+Cluster connected to a TPC-DS big data repository in S3.
 
 ## References:
-- https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB (available online 2024 and created on 2022)
-- https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html (available online 2024)
-- https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html (available online 2024)
-- https://aws.amazon.com/es/what-is/apache-spark/ (available online 2024)
-- https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html (available online 2024)
-- https://aws.amazon.com/es/cloudwatch/ (available online 2024)
-- Priti Kumari and Parmeet Kaur, "A survey of fault tolerance in cloud computing," 2021 Journal of King Saud University - Computer and - Information Sciences, pp. 1159-1176, doi: 10.1016/j.jksuci.2018.09.021.
-- https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v3.2.0.pdf
+
+* https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseB
+enchmark/Cloud-DWB-Derived-from-TPCDS/1TB (available online 2024 and created in
+2022)
+* https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-arch.html
+(available online 2024)
+* https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html
+(available online 2024)
+* https://aws.amazon.com/es/what-is/apache-spark/ (available online 2024)
+* https://docs.aws.amazon.com/cli/latest/reference/emr/create-default-roles.html (available
+online 2024)
+* https://aws.amazon.com/es/cloudwatch/ (available online 2024)
+* Priti Kumari and Parmeet Kaur, "A survey of fault tolerance in cloud computing," 2021
+Journal of King Saud University - Computer and - Information Sciences, pp. 1159-1176,
+doi: 10.1016/j.jksuci.2018.09.021.
+* Sehgal, N.K., Bhatt, P.C.P., Acken, J.M. (2023). Cloud Computing Scalability. In: Cloud
+Computing with Security and Scalability. Springer, Cham.
+https://doi.org/10.1007/978-3-031-07242-0_13
+* Kamil, I. A., & Al-Askari, M. A. (2024). Principles of Fault Tolerance in IT Systems: A
+Review.
+* https://www.tpc.org/tpc_documents_current_versions/pdf/tpc-ds_v2.1.0.pdf
