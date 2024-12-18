@@ -82,7 +82,7 @@ CREATE DATABASE tpcds_1tbrs;
 ```
 ![TPCDS DB](img/tpcds_db.png)
 
-5\. The ddl file contains CREATE statements which you should modify as indicated below:
+5\. The ddl.sql file located in the link of the previous step contains CREATE statements for the tables, which you should modify as indicated from this until the 9 step and repeat for every table. **We recommended read or following the steps to understand the changes at least once, but if you consider, you can use the following file with the scripts to create every table in Athena and go directly to step 10**:
 * In each **“CREATE”** statement, replace **“CREATE TABLE”** with **"create external
 table"**. This is needed because the data files are stored in an external bucket that you
 do not own.
