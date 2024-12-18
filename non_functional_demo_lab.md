@@ -55,7 +55,7 @@ This exercise must be carried out in an AWS Academy Learner Lab environment. Fir
 need to set up an S3 bucket and configure Athena, as described below:
 
 1\. Create an **Amazon S3 bucket** using S3 service with default permissions and the name that
-you decide (being a string unique in your environment), for example **_“athenabucketmll”_** where
+you decide (being a string unique in your environment), for example, **_“athenabucketmll”_** where
 you could replace **_“mll”_** with the initials of your name.
 
 The following image shows the S3 bucket created.
@@ -69,7 +69,7 @@ Once Athena is configured, continue with the following steps of the lab:
 3\. This work uses the official repository of [AWS Labs for Redshift utils](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/CloudDataWarehouseBenchmark/Cloud-DWB-Derived-from-TPCDS/1TB), specifically employing
 the **_1 TB TPC-DS_** which is an industry-standard benchmark to evaluate the performance of
 systems for big data analytics; it simulates the data and typical queries of the data warehouse,
-offering different sizes of information. In summary, it provides us with data to test systems
+offering different sizes of information. In summary, it provides data to test systems
 related to information consumption with Big Data queries. The script file ddl.sql contains the
 commands to create the database tables on Redshift, an AWS product designed for storing
 large data volumes but in this case, you will adapt to run in Athena as a datasource.
@@ -288,8 +288,8 @@ limit 100;
 running_**, for this is important to do it with a query that takes a minimum of 3 minutes to execute.
 
 You will manually introduce a failure in the cluster to test the fault tolerance properties of Spark
-going down a task node. For this, you have to **_enter to the AWS console by browser_** and go to
-the **_section of cluster details_** of the cluster running and next enter the **_“Instance Groups”
+going down a task node. For this, you have to **_enter the AWS console by browser_** go to
+the **_section of cluster details_** of the cluster running, and next enter the **_“Instance Groups”
 panel_** to **_set the instance group's size to zero_** for the node that you want to go down, using
 the **_resize option_** as the following image show:
 ![Fault Tolerance Demo 1](img/ft_demo_1.png)
@@ -381,15 +381,15 @@ shorter.
 
 ## Appendix: pre-requisite knowledge; refer to this section if it is unclear how to execute one or more steps in the guide.
 
-To run this experiment in an AWS lab environment, you have to access with your mail registered
+To run this experiment in an AWS lab environment, you have to access with your email registered
 as **_username_** and your **_password_** to the site https://awsacademy.instructure.com/login/canvas.
-Then, in the **_control panel_** section you need access to the course **_“AWS Academy Learner
-Lab [82952]”_**. Next you must click in the **_“Modules”_** menu and scroll down to enter the section
-**_“Launch AWS Academy Learner Lab”_**. Finally you have to make a click to the button **_“Start
+Then, in the **_control panel section_**, you need access to the course **_“AWS Academy Learner
+Lab [82952]”_**. Next, you must click in the **_“Modules”_** menu and scroll down to enter the section
+**_“Launch AWS Academy Learner Lab”_**. Finally, you have to click on the button **_“Start
 Lab”_** until the AWS console is green color for launching the console with a click in the **_“AWS”_**
 button.
 ![appendix1](img/appendix1.png)
-Here are the steps of help for configurations needed in this lab:
+Here are the steps to help with configurations needed in this lab:
 1\. The first step is to create a key pair in the AWS console using the key pairs service:
 you have to create a key pair by putting it a name, in this case, called “emr-keypair”
 being of RSA type and “.pem” file format. Then you have to download the file for future
