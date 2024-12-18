@@ -15,7 +15,7 @@ AWS Academy Learner Lab environment.
 **Objectives**
 
 This laboratory guide will teach you how to:
-* Use AWS services such as Athena and EMR to analyze large data volumes, and
+* Use AWS services such as Athena and EMR to analyze large data volumes and
 the Cloudwatch tool to monitor the metrics of an EMR cluster.
 * Prepare an environment for benchmarking a Big Data platform with the benchmark
 “TPC-DS” on AWS.
