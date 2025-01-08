@@ -314,7 +314,8 @@ Finally, as a complement it is important to remark that there are default parame
 EMR Spark Cluster that are significant, such as the 100-second timeout for validating
 connections among nodes and the 30-minute timeout for query resolution.\
 This experiment showed that the Spark EMR Cluster can regulate its processes and function
-effectively to get the query results, even with one less node.
+effectively to get the query results, even with one less node.\
+> Please remember that you'll have to terminate the cluster in the AWS to avoid the deactivation of the AWS account. You can only start one cluster at a time.  
 
 
 ## Observe measurements of the performance of an EMR Cluster using CloudWatch
