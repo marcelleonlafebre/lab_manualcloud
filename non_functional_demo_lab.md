@@ -272,7 +272,7 @@ following code into the server which is a variant of query 21 for running in Spa
 ```
 select *
 from(select w_warehouse_name
-            ,i_item_id
+            ,i_item_sk
             ,sum(inv_quantity_on_hand) as inv_sum
      from inventory, warehouse, item, date_dim
      where i_current_price between 0.99 and 1.49
@@ -280,9 +280,9 @@ from(select w_warehouse_name
      and inv_warehouse_sk=w_warehouse_sk
      and inv_date_sk=d_date_sk
      and d_date between cast('2000-02-11' as date) and cast('2000-04-11' as
-date) group by w_warehouse_name, i_item_id) x
+date) group by w_warehouse_name, i_item_sk) x
 where inv_sum between 0.6 and 1.5
-order by w_warehouse_name,i_item_id
+order by w_warehouse_name,i_item_sk
 limit 100;
 ```
 **_Take into account that the following steps need to be executed while the query is
