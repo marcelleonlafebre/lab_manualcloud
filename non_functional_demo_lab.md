@@ -207,7 +207,7 @@ Here is the summary of configurations to consider in the cluster creation:
 | ------------------------------ | --------- |      
 | **spark version** | Default version |
 | **Amazon EC2 key pair for SSH to the cluster** | Select the name of your EC2 key pair |
-| **Additional security groups for Primary node (firewall)** | Select the name of the security group created |
+| **Additional security groups for primary node (firewall)** | Select the name of the security group created |
 | **Instance-type**      | m4.large |
 | **region** | Your test region. Make sure the source data has been copied to the test region. For example: `us-east-1`|
 | **Service role** | `EMR_DefaultRole` By default. 
