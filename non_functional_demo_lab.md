@@ -192,7 +192,7 @@ of tables and execution of operations. You can go to this link to review Apache 
 https://aws.amazon.com/es/what-is/apache-spark/.
 With the mentioned restrictions you can only create **_7 task nodes_** of **_instance type
 m4.large_** as shown in the following image:
-![EMR 1 SPARK](img/cluster3.png)
+![EMR 1 SPARK](img/Cluster3.png)
 
 4\. Finally, the cluster has been created with the following information:
 ![EMR 1 SPARK](img/cluster_final1.png)
